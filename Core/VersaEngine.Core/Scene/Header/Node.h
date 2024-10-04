@@ -6,9 +6,9 @@
 #include <map>
 #include <any>
 #include <chrono>
-#include <memory> 
+#include <memory> // for std::unique_ptr
 
-#include "Connection.h" 
+#include "Connection.h"
 #include "NodeComponent.h" // Include the NodeComponent header
 
 enum class NodeType
@@ -24,7 +24,7 @@ class Pin
 {
 public:
     std::string Name;
-    std::string DataType;
+    std::string DataType; // You might want to use a more specific type for data types later
     // ... other pin-related properties (e.g., connection point location)
 };
 
@@ -39,18 +39,19 @@ public:
 
     // Properties
     std::string Name;
-    glm::vec2 Position;
+    glm::vec2 Position; // Assuming you're using GLM for vector math
     glm::vec2 Size = glm::vec2(100, 50);
     NodeType Type = NodeType::Undefined;
-    std::any Data;
+    std::any Data; // Can be used to store any type of data
 
-    std::vector<std::string> Tags;
-    std::map<std::string, std::any> CustomProperties;
+    std::vector<std::string> Tags; // For categorization and filtering
+    std::map<std::string, std::any> CustomProperties; // Flexible custom data storage
 
-    bool IsEnabled = true;
-    bool IsVisible = true;
+    bool IsEnabled = true; // Control node activity
+    bool IsVisible = true; // Control node visibility
 
-    // ... (Color, Icon, Tooltip, IsCollapsed, ExecutionOrder, Category, IsBreakpoint)
+    // Additional properties for visual representation and editor interaction
+    // ... (Color, Icon, Tooltip, IsCollapsed, etc.)
 
     std::vector<Pin> InputPins;
     std::vector<Pin> OutputPins;
@@ -62,12 +63,10 @@ public:
 
     Node* Parent = nullptr;
     std::vector<Node*> Children;
-
     std::vector<Connection*> Connections;
 
-    int Id;
-
-    std::string Comment;
+    int Id; // Unique identifier for the node
+    std::string Comment; // User-defined comment or description
 
     // Components (using unique_ptr for ownership)
     std::vector<std::unique_ptr<NodeComponent>> Components;
@@ -82,26 +81,24 @@ public:
     virtual void Select() override;
     virtual void Deselect() override;
 
-    // Node-specific methods
-    void Initialize();
-    void Terminate();
-    void Update(float deltaTime);
-    void Render(/* ... graphics context */);
-    void HandleEvent(Event event);
-    void Execute();
+    // Node-specific methods (examples)
+    virtual void Initialize();
+    virtual void Terminate();
+    virtual void HandleEvent(Event event);
+    virtual void Execute(); // If the node represents executable logic
 
-    // Type-safe data access
+    // Type-safe data access methods
     template <typename T>
     T GetData() const
     {
-        try
+        if (Data.type() == typeid(T))
         {
             return std::any_cast<T>(Data);
         }
-        catch (const std::bad_any_cast& e)
+        else
         {
-            // Handle type mismatch error (e.g., log an error, return a default value) 
-            throw;
+            // Handle the case where the type does not match (e.g., throw an exception or return a default value)
+            throw std::bad_any_cast();
         }
     }
 

@@ -56,6 +56,7 @@ void Node::Render(/* ... graphics context */)
     {
         for (auto& component : Components)
         {
+            // Use dynamic_cast to check if the component is renderable
             if (auto* renderable = dynamic_cast<IRenderable*>(component.get()))
             {
                 renderable->Render(/* ... graphics context */);
@@ -147,7 +148,7 @@ bool Node::CanConnectTo(Node* otherNode, Pin* myPin, Pin* otherPin) const
     return true;
 }
 
-// Serialization and Deserialization 
+// Serialization and Deserialization
 // (You'll need to implement these using your chosen XML serialization library)
 std::string Node::Serialize() const
 {
