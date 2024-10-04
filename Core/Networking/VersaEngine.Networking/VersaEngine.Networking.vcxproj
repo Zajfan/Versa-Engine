@@ -22,7 +22,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{107f447f-7c14-4327-9238-4abb625a8731}</ProjectGuid>
+    <ProjectGuid>{47c75233-f7a7-4fef-b67a-9b6764879d2a}</ProjectGuid>
     <RootNamespace>VersaEngineNetworking</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
