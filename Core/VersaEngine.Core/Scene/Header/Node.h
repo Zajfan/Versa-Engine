@@ -6,10 +6,10 @@
 #include <map>
 #include <any>
 #include <chrono>
-#include <memory> // for std::unique_ptr
+#include <memory> 
 
-#include "Connection.h"
-#include "NodeComponent.h" // Include the NodeComponent header
+#include "Connection.h" 
+#include "NodeComponent.h" 
 
 enum class NodeType
 {
@@ -24,7 +24,7 @@ class Pin
 {
 public:
     std::string Name;
-    std::string DataType; // You might want to use a more specific type for data types later
+    std::string DataType;
     // ... other pin-related properties (e.g., connection point location)
 };
 
@@ -39,34 +39,52 @@ public:
 
     // Properties
     std::string Name;
-    glm::vec2 Position; // Assuming you're using GLM for vector math
+    glm::vec2 Position;
     glm::vec2 Size = glm::vec2(100, 50);
     NodeType Type = NodeType::Undefined;
-    std::any Data; // Can be used to store any type of data
+    std::any Data;
 
-    std::vector<std::string> Tags; // For categorization and filtering
-    std::map<std::string, std::any> CustomProperties; // Flexible custom data storage
+    std::vector<std::string> Tags;
+    std::map<std::string, std::any> CustomProperties;
 
-    bool IsEnabled = true; // Control node activity
-    bool IsVisible = true; // Control node visibility
+    bool IsEnabled = true;
+    bool IsVisible = true;
 
-    // Additional properties for visual representation and editor interaction
-    // ... (Color, Icon, Tooltip, IsCollapsed, etc.)
+    // Visual Representation and Editor Interaction
+    enum class NodeShape { Rectangle, RoundedRectangle, Circle, Custom };
+    NodeShape Shape = NodeShape::Rectangle;
+    glm::vec3 Color = glm::vec3(1.0f); // Using vec3 for RGB color
+    std::string Icon; // Path or ID for the icon image
+    std::string Tooltip;
+    bool IsCollapsed = false;
+
+    // Execution and Logic
+    int ExecutionPriority = 0;
+    bool IsBreakpoint = false;
+    std::string Condition; // String to store a conditional expression
+    // ... (Properties or methods for state management)
+
+    // Node Relationships and Connections
+    enum class ConnectionType { Data, Event, Control };
+    std::vector<ConnectionType> AllowedConnectionTypes;
+    // ... (Properties or methods for dynamic ports)
+
+    // Data and Metadata
+    std::string Version;
+    std::map<std::string, std::string> UserDefinedMetadata;
 
     std::vector<Pin> InputPins;
     std::vector<Pin> OutputPins;
-    std::vector<NodeType> AllowedConnectionTypes;
 
     std::chrono::system_clock::time_point CreationTime;
     std::chrono::system_clock::time_point LastModifiedTime;
-    std::map<std::string, std::any> UserDefinedMetadata;
 
     Node* Parent = nullptr;
     std::vector<Node*> Children;
     std::vector<Connection*> Connections;
 
-    int Id; // Unique identifier for the node
-    std::string Comment; // User-defined comment or description
+    int Id;
+    std::string Comment;
 
     // Components (using unique_ptr for ownership)
     std::vector<std::unique_ptr<NodeComponent>> Components;
@@ -85,7 +103,7 @@ public:
     virtual void Initialize();
     virtual void Terminate();
     virtual void HandleEvent(Event event);
-    virtual void Execute(); // If the node represents executable logic
+    virtual void Execute();
 
     // Type-safe data access methods
     template <typename T>
@@ -97,7 +115,7 @@ public:
         }
         else
         {
-            // Handle the case where the type does not match (e.g., throw an exception or return a default value)
+            // Handle the case where the type does not match 
             throw std::bad_any_cast();
         }
     }
