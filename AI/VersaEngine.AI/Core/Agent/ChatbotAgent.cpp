@@ -213,9 +213,13 @@ namespace VersaEngine {
             std::string recognizedText = ""; // Replace with actual recognized text
 
             // - This will depend on your chosen speech recognition engine.
-            // - Here's a hypothetical example using an
-            return "";
-        }
+            // - Here's a hypothetical example using an imaginary 'SpeechRecognizer' class:
+            SpeechRecognizer recognizer;
+            recognizer.StartListening();
+            recognizedText = recognizer.GetRecognizedText();
+
+            if (logger_) {
+                logger_->Log("ChatbotAgent: Heard: " +
 
     } // namespace AI
 } // namespace VersaEngine
