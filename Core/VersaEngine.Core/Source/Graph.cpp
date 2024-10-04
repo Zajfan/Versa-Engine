@@ -1,6 +1,6 @@
 #include "Graph.h"
-#include "GraphSerializer.h" // Include the GraphSerializer header
-#include "GraphExecutor.h"  // Include if you created this class
+#include "GraphSerializer.h" 
+#include "GraphExecutor.h"  
 #include <algorithm>
 #include <stack>
 
@@ -94,7 +94,7 @@ void Graph::Deserialize(const std::string& filePath)
     GraphSerializer::Deserialize(*this, filePath);
 }
 
-// Graph Execution (delegated to GraphExecutor if you created it)
+// Graph Execution (delegated to GraphExecutor)
 void Graph::Execute()
 {
     GraphExecutor::Execute(*this);
@@ -104,12 +104,28 @@ void Graph::Execute()
 // TODO: Implement these methods based on your needs
 std::vector<Node*> Graph::FindNodesByType(NodeType type)
 {
-    // ...
+    std::vector<Node*> result;
+    for (auto& node : Nodes)
+    {
+        if (node->Type == type)
+        {
+            result.push_back(node);
+        }
+    }
+    return result;
 }
 
 std::vector<Node*> Graph::FindNodesByTag(const std::string& tag)
 {
-    // ...
+    std::vector<Node*> result;
+    for (auto& node : Nodes)
+    {
+        if (std::find(node->Tags.begin(), node->Tags.end(), tag) != node->Tags.end())
+        {
+            result.push_back(node);
+        }
+    }
+    return result;
 }
 
 // ... (Other potential graph-level operations)
@@ -138,7 +154,7 @@ std::vector<Node*> Graph::TopologicalSort()
     return sortedNodes;
 }
 
-void Graph::TopologicalSortUtil(Node* node, std::set<Node*>& visited, std::stack<Node*>& stack);
+void Graph::TopologicalSortUtil(Node* node, std::set<Node*>& visited, std::stack<Node*>& stack)
 {
     visited.insert(node);
 

@@ -1,17 +1,22 @@
 #include "GraphSerializer.h"
 
-// ... (Implementations for Serialize, Deserialize, and helper functions)
-
-// Example implementation for SerializeNode
-tinyxml2::XMLElement* GraphSerializer::SerializeNode(tinyxml2::XMLDocument& doc, Node* node)
+void GraphSerializer::Serialize(const Graph& graph, const std::string& filePath)
 {
-    tinyxml2::XMLElement* nodeElement = doc.NewElement("Node");
-    // ... (Set node attributes: Id, Name, Position, Type, etc.)
+    tinyxml2::XMLDocument doc;
+    tinyxml2::XMLElement* root = doc.NewElement("Graph");
+    doc.InsertEndChild(root);
 
-    // Serialize input and output pins
-    // ...
+    // ... (Serialization logic for nodes and connections, 
+    //      similar to what we discussed earlier, but now within 
+    //      the GraphSerializer class)
 
-    return nodeElement;
+    doc.SaveFile(filePath.c_str());
 }
 
-// ... (Implementations for other methods)
+void GraphSerializer::Deserialize(Graph& graph, const std::string& filePath)
+{
+    // ... (Deserialization logic for nodes and connections)
+}
+
+// ... (Implementations for helper functions: SerializeNode, DeserializeNode, 
+//      SerializeConnection, DeserializeConnection, etc.)
