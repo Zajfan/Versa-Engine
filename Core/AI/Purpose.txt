@@ -1,0 +1,1 @@
+Include AI-related components like pathfinding, behavior trees, and decision-making systems.

@@ -1,0 +1,65 @@
+You're right to focus on the core components first! These form the foundation of your game engine, and getting them right is crucial before moving on to more specialized features or the editor.
+
+Here's a breakdown of the core components for your Versa Engine, considering the design discussions we've had so far:
+
+1. **Scene Management**
+
+*   Purpose: To manage the organization and hierarchy of objects within your game world.
+*   Key Classes:
+    *   `Node`: Represents a single object in the scene (e.g., a character, a prop, a camera).
+    *   `Connection`: Defines relationships between nodes (e.g., parent-child, spatial connections).
+    *   `Graph`:  Manages the overall collection of nodes and connections, potentially including the execution logic for visual scripts.
+
+2. **Rendering Engine**
+
+*   Purpose: To render the visual representation of the game world, including 2D and potentially 3D graphics.
+*   Key Components:
+    *   Renderer: Handles the rendering pipeline, including drawing objects, applying shaders, and managing the graphics API (e.g., DirectX, OpenGL).
+    *   Shader System:  Allows for defining and applying shaders to control the visual appearance of objects.
+    *   Material System:  Manages materials, which define the surface properties of objects (e.g., color, texture, reflectivity).
+
+3. **Physics Engine**
+
+*   Purpose: To simulate the physical interactions of objects in the game world.
+*   Key Components:
+    *   Physics Simulation: Handles collision detection, rigid body dynamics, and other physics calculations.
+    *   Collision Shapes: Define the shapes of objects for collision detection (e.g., boxes, spheres, capsules).
+    *   Physics Materials:  Define the physical properties of objects (e.g., friction, bounciness).
+
+4. **Audio Engine**
+
+*   Purpose: To handle sound effects, music, and potentially spatial audio within the game.
+*   Key Components:
+    *   Audio Playback:  Manages the playback of audio files and controls volume, panning, etc.
+    *   Audio Mixing:  Allows for mixing multiple audio sources and applying effects.
+    *   Spatial Audio:  If supported, simulates 3D audio positioning and attenuation.
+
+5. **Input System**
+
+*   Purpose: To handle input from various devices (keyboard, mouse, gamepad) and translate it into game actions.
+*   Key Components:
+    *   Input Mapping:  Allows users to map input events (e.g., key presses, mouse clicks) to game actions.
+    *   Input Polling:  Continuously checks for input events and dispatches them to the relevant game systems.
+
+6. **Scripting System**
+
+*   Purpose: To provide a way for users to write game logic and behavior using scripting languages.
+*   Key Components:
+    *   Script Execution:  Handles the execution of scripts, potentially using an interpreter or virtual machine.
+    *   Scripting API:  Exposes engine functionalities to scripts, allowing them to interact with the game world.
+
+7. **Voxel Engine**
+
+*   Purpose:  To create and manage voxel-based terrain and objects within the game world.
+*   Key Components:
+    *   Voxel Data Storage:  Stores the voxel data efficiently (e.g., using octrees or other data structures).
+    *   Voxel Rendering:  Renders the voxel data using appropriate techniques (e.g., meshing, raycasting).
+    *   Voxel Editing:  Provides tools for creating and manipulating voxel data.
+
+**Remember:**
+
+*   This is a general outline, and the specific components and their implementations will depend on your engine's design and the technologies you choose.
+*   Focus on building a solid foundation for these core components first, ensuring they are well-designed, modular, and extensible.
+*   As you progress, you can add more specialized components or features to enhance your engine's capabilities.
+
+Feel free to ask any further questions or discuss specific implementation details as you start building these core components!

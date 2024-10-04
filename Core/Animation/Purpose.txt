@@ -1,0 +1,1 @@
+Implement an animation system to control character and object animations.
