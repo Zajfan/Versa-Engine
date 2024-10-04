@@ -406,3 +406,5 @@ VersaEngine.Core.sln
 Versa Engine.sln
 *.sln
 new todolist .txt
+Core/VersaEngine.Core/VersaEngine.Core.vcxproj.filters
+Core/VersaEngine.Core/VersaEngine.Core.vcxproj

@@ -61,6 +61,15 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{f9e9a46d-7d33-4c4e-a30c-57a50d7a6818}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Header Files">
+      <UniqueIdentifier>{5145d17a-a054-4b77-b3a7-b3fd3526229a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Source Files">
+      <UniqueIdentifier>{b7966aa8-326c-4e8a-a016-d2b02383b371}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Graph.cpp">
@@ -81,6 +90,12 @@
     <ClCompile Include="Scene\Source\Node.cpp">
       <Filter>Scene\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Source Files\RenderComponent.cpp">
+      <Filter>Components\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Source Files\ScriptComponent.cpp">
+      <Filter>Components\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene\Header\Connection.h">
@@ -100,6 +115,15 @@
     </ClInclude>
     <ClInclude Include="Header\GraphSerializer.h">
       <Filter>Scripting\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Header\NodeComponent.h">
+      <Filter>Scene\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Header Files\RenderComponent.h">
+      <Filter>Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Header Files\ScriptComponent.h">
+      <Filter>Components\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,11 +2,18 @@
 #include <algorithm>
 
 // Constructor
-Node::Node() : CreationTime(std::chrono::system_clock::now()),
+Node::Node(const std::string& name) : Name(name),
+CreationTime(std::chrono::system_clock::now()),
 LastModifiedTime(std::chrono::system_clock::now())
 {
     // You might want to initialize other properties here if needed
     // For example, you could assign a unique ID to the node here
+}
+
+Node::~Node()
+{
+    // You might want to add cleanup logic here in the future
+    // For example, releasing resources held by the node
 }
 
 // Methods for managing connections
@@ -151,6 +158,12 @@ std::string Node::Serialize() const
 void Node::Deserialize(const std::string& xmlData)
 {
     // TODO: Implement deserialization logic using TinyXML2 or your preferred library
+}
+
+// Method to add components
+void Node::AddComponent(std::unique_ptr<NodeComponent> component)
+{
+    Components.push_back(std::move(component));
 }
 
 // ... (You'll likely need to implement serialization and deserialization methods here

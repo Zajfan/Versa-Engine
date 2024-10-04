@@ -6,9 +6,10 @@
 #include <map>
 #include <any>
 #include <chrono>
-#include <memory> // for std::unique_ptr
+#include <memory> 
 
-#include "Connection.h" // Include the Connection header
+#include "Connection.h" 
+#include "NodeComponent.h" // Include the NodeComponent header
 
 enum class NodeType
 {
@@ -23,27 +24,25 @@ class Pin
 {
 public:
     std::string Name;
-    std::string DataType; // You might want to use a more specific type for data types later
+    std::string DataType;
     // ... other pin-related properties (e.g., connection point location)
 };
 
-// Forward declaration of the Event class (assuming you'll have one)
+// Forward declaration of the Event class
 class Event;
 
-// Forward declaration of NodeComponent (we'll define it later)
-class NodeComponent;
-
-class Node : public ISelectable // Keep only the ISelectable interface for now
+class Node : public ISelectable
 {
 public:
-    Node(); // Constructor
+    Node(const std::string& name);
+    ~Node();
 
     // Properties
     std::string Name;
-    glm::vec2 Position; // Assuming you're using GLM for vector math
+    glm::vec2 Position;
     glm::vec2 Size = glm::vec2(100, 50);
     NodeType Type = NodeType::Undefined;
-    std::any Data; // Store node-specific data
+    std::any Data;
 
     std::vector<std::string> Tags;
     std::map<std::string, std::any> CustomProperties;
@@ -61,19 +60,16 @@ public:
     std::chrono::system_clock::time_point LastModifiedTime;
     std::map<std::string, std::any> UserDefinedMetadata;
 
-    // Parent-child relationships
     Node* Parent = nullptr;
     std::vector<Node*> Children;
 
-    // Connections
     std::vector<Connection*> Connections;
 
-    // Unique identifier
     int Id;
 
     std::string Comment;
 
-    // Components
+    // Components (using unique_ptr for ownership)
     std::vector<std::unique_ptr<NodeComponent>> Components;
 
     // Methods
@@ -104,7 +100,7 @@ public:
         }
         catch (const std::bad_any_cast& e)
         {
-            // Handle type mismatch error
+            // Handle type mismatch error (e.g., log an error, return a default value) 
             throw;
         }
     }
@@ -117,6 +113,9 @@ public:
 
     // Connection validation
     bool CanConnectTo(Node* otherNode, Pin* myPin, Pin* otherPin) const;
+
+    // Method to add components
+    void AddComponent(std::unique_ptr<NodeComponent> component);
 
     // ... (Serialization and Deserialization)
 };
