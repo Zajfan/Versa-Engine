@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+Core/VersaEngine.Core/VersaEngine.Core.sln
+Editor/VersaEngine.Editor/VersaEngine.Editor.sln
+VersaEngine.Core.sln
+VersaEngine.Editor.sln
