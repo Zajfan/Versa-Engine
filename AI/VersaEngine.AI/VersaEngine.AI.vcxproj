@@ -142,7 +142,12 @@
     <ClCompile Include="SensoryPerception.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Agent.h" />
     <ClInclude Include="Core\Agent\ChatbotAgent.h" />
+    <ClInclude Include="DialogueManager.h" />
+    <ClInclude Include="KnowledgeBase.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="NLUComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
