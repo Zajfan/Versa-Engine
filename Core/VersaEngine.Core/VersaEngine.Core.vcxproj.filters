@@ -55,44 +55,50 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{3227aa7a-6d30-4643-b9bf-1465dd02ea2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Source">
+      <UniqueIdentifier>{0be81a6a-eeb1-446f-ba3f-597b2131959a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Header">
+      <UniqueIdentifier>{78f8f0f3-af05-41cb-ad53-f6a38c94d24b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Graph.cpp">
+    <ClCompile Include="Source\Graph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Connection.cpp">
+    <ClCompile Include="Source\GraphExecutor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Node.cpp">
+    <ClCompile Include="Source\GraphLayout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GraphSerializer.cpp">
+    <ClCompile Include="Source\GraphSerializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GraphExecutor.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Scene\Source\Connection.cpp">
+      <Filter>Scene\Source</Filter>
     </ClCompile>
-    <ClCompile Include="GraphLayout.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Scene\Source\Node.cpp">
+      <Filter>Scene\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Graph.h">
+    <ClInclude Include="Scene\Header\Connection.h">
+      <Filter>Scene\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Header\Node.h">
+      <Filter>Scene\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Connection.h">
+    <ClInclude Include="Header\GraphExecutor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Node.h">
+    <ClInclude Include="Header\GraphLayout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GraphSerializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphExecutor.h">
+    <ClInclude Include="Header\GraphSerializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,0 +1,10 @@
+Start Building the Graph Editor UI
+Choose your UI framework: If you haven't already, finalize your choice (e.g., MFC).
+Create the editor project: Set up a new project within your VersaEngine.Editor.sln solution.
+Design the main window: Sketch out the basic layout (canvas, toolbar, etc.).
+Implement basic rendering and interactions: Start rendering nodes and connections, and handle basic interactions like node selection and dragging.
+Remember
+
+Focus on core functionality: Start with the essential features and gradually add more advanced capabilities.
+Test thoroughly: Continuously test your implementation to ensure correctness and identify any issues early on.
+Iterate and refine: Be prepared to iterate on your design and implementation based on feedback and your evolving understanding of the system.
