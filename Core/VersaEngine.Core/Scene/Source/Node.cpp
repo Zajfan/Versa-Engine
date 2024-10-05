@@ -1,16 +1,106 @@
-// ... (You'll likely need to implement serialization and deserialization methods here
-//      using your chosen XML serialization library)
-
 #include "Node.h"
 #include <algorithm>
+#include <stdexcept> // For std::runtime_error
+#include "DataTypeUtils.h"
+
+// Global node ID counter
+int g_nodeIdCounter = 0; // Initialize a global counter for node IDs
 
 // Constructor
 Node::Node(const std::string& name) : Name(name),
 CreationTime(std::chrono::system_clock::now()),
-LastModifiedTime(std::chrono::system_clock::now())
+LastModifiedTime(std::chrono::system_clock::now()),
+Id(++g_nodeIdCounter)
 {
-    // You might want to initialize other properties here if needed
-    // For example, you could assign a unique ID to the node here
+    // Initialize other properties here
+
+    // 1. Set default size based on node type
+    switch (Type)
+    {
+    case NodeType::Event:
+        Size = glm::vec2(150, 80);
+        break;
+    case NodeType::Variable:
+        Size = glm::vec2(120, 60);
+        break;
+    case NodeType::Function:
+        Size = glm::vec2(200, 100);
+        break;
+    default:
+        Size = glm::vec2(100, 50);
+        break;
+    }
+
+    // 2. Set default color based on node type
+    switch (Type)
+    {
+    case NodeType::Event:
+        Color = glm::vec3(0.8f, 0.6f, 0.2f);
+        break;
+    case NodeType::Variable:
+        Color = glm::vec3(0.2f, 0.8f, 0.6f);
+        break;
+    case NodeType::Function:
+        Color = glm::vec3(0.6f, 0.2f, 0.8f);
+        break;
+    default:
+        Color = glm::vec3(1.0f);
+        break;
+    }
+
+    // 3. Add default pins based on node type
+    if (Type == NodeType::Variable)
+    {
+        Pin outputPin;
+        outputPin.Name = "Value";
+        outputPin.DataType = NodeDataType::Float;
+        OutputPins.push_back(outputPin);
+    }
+    else if (Type == NodeType::Function)
+    {
+        Pin inputPin;
+        inputPin.Name = "Input";
+        inputPin.DataType = NodeDataType::Float;
+        InputPins.push_back(inputPin);
+
+        Pin outputPin;
+        outputPin.Name = "Output";
+        outputPin.DataType = NodeDataType::Float;
+        OutputPins.push_back(outputPin);
+    }
+
+    // 4. Set default values for other properties if needed
+
+    // Example: Set a default tooltip based on node type
+    switch (Type)
+    {
+    case NodeType::Event:
+        Tooltip = "Triggers an event.";
+        break;
+    case NodeType::Variable:
+        Tooltip = "Stores a value.";
+        break;
+    case NodeType::Function:
+        Tooltip = "Executes a function.";
+        break;
+    default:
+        Tooltip = "A node in the graph.";
+        break;
+    }
+
+    // Example: Set IsCollapsed based on node type
+    if (Type == NodeType::Function)
+    {
+        IsCollapsed = true;
+    }
+
+    // Example: Set ExecutionPriority based on node type
+    if (Type == NodeType::Event)
+    {
+        ExecutionPriority = 1;
+    }
+
+    // ... (Add initialization for other properties as needed)
 }
 
 Node::~Node()
@@ -19,7 +109,38 @@ Node::~Node()
     // For example, releasing resources held by the node
 }
 
-// ... (Methods for managing connections: AddConnection, RemoveConnection, GetConnectedNodes)
+// Methods for managing connections
+void Node::AddConnection(Connection* connection)
+{
+    Connections.push_back(connection);
+}
+
+void Node::RemoveConnection(Connection* connection)
+{
+    // Find and remove the connection from the vector
+    auto it = std::find(Connections.begin(), Connections.end(), connection);
+    if (it != Connections.end())
+    {
+        Connections.erase(it);
+    }
+}
+
+std::vector<Node*> Node::GetConnectedNodes()
+{
+    std::vector<Node*> connectedNodes;
+    for (auto connection : Connections)
+    {
+        if (connection->Source == this)
+        {
+            connectedNodes.push_back(connection->Target);
+        }
+        else if (connection->Target == this)
+        {
+            connectedNodes.push_back(connection->Source);
+        }
+    }
+    return connectedNodes;
+}
 
 // Interface implementations
 void Node::Render(/* ... graphics context */)
@@ -145,3 +266,35 @@ void Node::AddComponent(std::unique_ptr<NodeComponent> component)
 {
     Components.push_back(std::move(component));
 }
+
+// Templated methods for type-safe data access
+template <typename T>
+void Node::SetInputData(const std::string& pinName, const T& value)
+{
+    // 1. Find the input pin with the given name
+    auto it = std::find_if(InputPins.begin(), InputPins.end(),
+        [&](const Pin& pin) { return pin.Name == pinName; });
+
+    if (it != InputPins.end())
+    {
+        // 2. Check if the pin's data type matches the type of 'value'
+        if (it->DataType == GetNodeDataType<T>())
+        {
+            // 3. If the types match, store the value in the pin's data
+            it->Data = value;
+        }
+        else
+        {
+            // 4. If the types don't match, handle the error
+            throw std::runtime_error("Input data type mismatch for pin: " + pinName);
+        }
+    }
+    else
+    {
+        // Handle the case where the pin is not found
+        throw std::runtime_error("Output pin not found: " + pinName);
+    }
+}
+
+// ... (You'll likely need to implement serialization and deserialization methods here
+//      using your chosen XML serialization library)

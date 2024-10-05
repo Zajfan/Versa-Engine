@@ -11,20 +11,23 @@
 #include "Connection.h" 
 #include "NodeComponent.h" 
 
-enum class NodeType
+// Define an enum for supported data types
+enum class NodeDataType
 {
-    Undefined,
-    Event,
-    Variable,
-    Function,
-    // ... other node types as needed
+    Int,
+    Float,
+    Bool,
+    String,
+    Vector2,
+    Vector3,
+    // ... other types as needed
 };
 
 class Pin
 {
 public:
     std::string Name;
-    std::string DataType;
+    NodeDataType DataType; // Use the NodeDataType enum
     // ... other pin-related properties (e.g., connection point location)
 };
 
@@ -131,6 +134,13 @@ public:
 
     // Method to add components
     void AddComponent(std::unique_ptr<NodeComponent> component);
+
+    // Templated methods for type-safe data access (New additions)
+    template <typename T>
+    void SetInputData(const std::string& pinName, const T& value);
+
+    template <typename T>
+    T GetOutputData(const std::string& pinName) const;
 
     // ... (Serialization and Deserialization)
 };
