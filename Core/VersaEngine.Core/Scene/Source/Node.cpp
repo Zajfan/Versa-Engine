@@ -1,3 +1,6 @@
+// ... (You'll likely need to implement serialization and deserialization methods here
+//      using your chosen XML serialization library)
+
 #include "Node.h"
 #include <algorithm>
 
@@ -16,38 +19,7 @@ Node::~Node()
     // For example, releasing resources held by the node
 }
 
-// Methods for managing connections
-void Node::AddConnection(Connection* connection)
-{
-    Connections.push_back(connection);
-}
-
-void Node::RemoveConnection(Connection* connection)
-{
-    // Find and remove the connection from the vector
-    auto it = std::find(Connections.begin(), Connections.end(), connection);
-    if (it != Connections.end())
-    {
-        Connections.erase(it);
-    }
-}
-
-std::vector<Node*> Node::GetConnectedNodes()
-{
-    std::vector<Node*> connectedNodes;
-    for (auto connection : Connections)
-    {
-        if (connection->Source == this)
-        {
-            connectedNodes.push_back(connection->Target);
-        }
-        else if (connection->Target == this)
-        {
-            connectedNodes.push_back(connection->Source);
-        }
-    }
-    return connectedNodes;
-}
+// ... (Methods for managing connections: AddConnection, RemoveConnection, GetConnectedNodes)
 
 // Interface implementations
 void Node::Render(/* ... graphics context */)
@@ -121,6 +93,13 @@ void Node::HandleEvent(Event event)
 
 void Node::Execute()
 {
+    // Check if the node has a condition and evaluate it
+    if (!Condition.empty())
+    {
+        // TODO: Implement condition evaluation logic
+        // If the condition is false, skip execution
+    }
+
     for (auto& component : Components)
     {
         // You might need a more specific execution mechanism here
@@ -166,6 +145,3 @@ void Node::AddComponent(std::unique_ptr<NodeComponent> component)
 {
     Components.push_back(std::move(component));
 }
-
-// ... (You'll likely need to implement serialization and deserialization methods here
-//      using your chosen XML serialization library)
