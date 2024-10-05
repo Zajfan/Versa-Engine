@@ -127,13 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Graph Editor\GraphEditor.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\Graph Editor\GraphEditor.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="VersaEngine.Editor.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +145,60 @@
     <Image Include="..\Graph Editor\res\Toolbar.bmp" />
     <Image Include="..\Graph Editor\res\Toolbar256.bmp" />
     <Image Include="..\Graph Editor\res\userimages.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\classview.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\classview_hc.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\class_view.ico" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\class_view_hc.ico" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\explorer.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\explorer_hc.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\fileview.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\fileview_hc.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\file_view.ico" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\file_view_hc.ico" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\menuimages.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\menuimages_hc.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\output_wnd.ico" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\output_wnd_hc.ico" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\properties.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\properties_hc.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\properties_wnd.ico" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\properties_wnd_hc.ico" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\sort.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\sort_hc.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\Toolbar.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\Toolbar256.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\userimages.bmp" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\VersaEngine.Editor.ico" />
+    <Image Include="Graph Editor\VersaEngine.GraphEditor\res\VersaEngine.EditorDoc.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Docs\VersaEngine.EditorDoc.h" />
+    <ClInclude Include="Graph Editor\VersaEngine.GraphEditor\GraphEditor.h" />
+    <ClInclude Include="MFC\Header\framework.h" />
+    <ClInclude Include="MFC\Header\MainFrm.h" />
+    <ClInclude Include="MFC\Header\pch.h" />
+    <ClInclude Include="MFC\Header\targetver.h" />
+    <ClInclude Include="Views\Header\ClassView.h" />
+    <ClInclude Include="Views\Header\FileView.h" />
+    <ClInclude Include="Views\Header\OutputWnd.h" />
+    <ClInclude Include="Views\Header\PropertiesWnd.h" />
+    <ClInclude Include="Views\Header\VersaEngine.EditorView.h" />
+    <ClInclude Include="Views\Header\ViewTree.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Docs\VersaEngine.EditorDoc.cpp" />
+    <ClCompile Include="Graph Editor\VersaEngine.GraphEditor\GraphEditor.cpp" />
+    <ClCompile Include="MFC\Source\MainFrm.cpp" />
+    <ClCompile Include="MFC\Source\pch.cpp" />
+    <ClCompile Include="Views\Source\ClassView.cpp" />
+    <ClCompile Include="Views\Source\FileView.cpp" />
+    <ClCompile Include="Views\Source\OutputWnd.cpp" />
+    <ClCompile Include="Views\Source\PropertiesWnd.cpp" />
+    <ClCompile Include="Views\Source\VersaEngine.EditorView.cpp" />
+    <ClCompile Include="Views\Source\ViewTree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Graph Editor\VersaEngine.GraphEditor\res\VersaEngineEditor.rc2" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
