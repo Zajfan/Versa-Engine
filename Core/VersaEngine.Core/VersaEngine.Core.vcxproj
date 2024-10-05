@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Source Files\NodeComponent.cpp" />
+    <ClCompile Include="Components\Source Files\RenderComponent.cpp" />
+    <ClCompile Include="Components\Source Files\ScriptComponent.cpp" />
     <ClCompile Include="Scene\Source\Connection.cpp" />
     <ClCompile Include="Scene\Source\Node.cpp" />
     <ClCompile Include="Source\Graph.cpp" />
@@ -27,12 +30,19 @@
     <ClCompile Include="Source\GraphSerializer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\Header Files\AudioComponent.h" />
+    <ClInclude Include="Components\Header Files\NodeComponent.h" />
+    <ClInclude Include="Components\Header Files\PhysicsComponent.h" />
+    <ClInclude Include="Components\Header Files\RenderComponent.h" />
+    <ClInclude Include="Components\Header Files\ScriptComponent.h" />
     <ClInclude Include="Header\Graph.h" />
     <ClInclude Include="Header\GraphExecutor.h" />
     <ClInclude Include="Header\GraphLayout.h" />
     <ClInclude Include="Header\GraphSerializer.h" />
     <ClInclude Include="Scene\Header\Connection.h" />
+    <ClInclude Include="Scene\Header\EventNode.h" />
     <ClInclude Include="Scene\Header\Node.h" />
+    <ClInclude Include="Scene\Header\VariableNode.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

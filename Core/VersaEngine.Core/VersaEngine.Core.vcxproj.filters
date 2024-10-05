@@ -96,6 +96,9 @@
     <ClCompile Include="Components\Source Files\ScriptComponent.cpp">
       <Filter>Components\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Source Files\NodeComponent.cpp">
+      <Filter>Components\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene\Header\Connection.h">
@@ -116,13 +119,25 @@
     <ClInclude Include="Header\GraphSerializer.h">
       <Filter>Scripting\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Header\NodeComponent.h">
-      <Filter>Scene\Header</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Header Files\RenderComponent.h">
       <Filter>Components\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\Header Files\ScriptComponent.h">
+      <Filter>Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Header\EventNode.h">
+      <Filter>Scene\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Header\VariableNode.h">
+      <Filter>Scene\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Header Files\NodeComponent.h">
+      <Filter>Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Header Files\PhysicsComponent.h">
+      <Filter>Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Header Files\AudioComponent.h">
       <Filter>Components\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
