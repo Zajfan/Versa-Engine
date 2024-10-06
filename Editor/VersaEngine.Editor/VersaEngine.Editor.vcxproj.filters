@@ -110,6 +110,12 @@
     <Filter Include="UI\Source Files">
       <UniqueIdentifier>{7d59100d-68fe-47e7-ac4c-83325e8f20d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sculpting\Header Files">
+      <UniqueIdentifier>{a1d68b65-b54f-44e9-ab67-c8050d86a036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sculpting\Source Files">
+      <UniqueIdentifier>{464f1581-ced0-40b7-97e8-ed48a692102f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VersaEngine.Editor.rc">

@@ -22,12 +22,16 @@
     <ClCompile Include="Components\Source Files\NodeComponent.cpp" />
     <ClCompile Include="Components\Source Files\RenderComponent.cpp" />
     <ClCompile Include="Components\Source Files\ScriptComponent.cpp" />
+    <ClCompile Include="Scene\Header\NodeSerialization.cpp" />
     <ClCompile Include="Scene\Source\Connection.cpp" />
     <ClCompile Include="Scene\Source\Node.cpp" />
-    <ClCompile Include="Source\Graph.cpp" />
-    <ClCompile Include="Source\GraphExecutor.cpp" />
-    <ClCompile Include="Source\GraphLayout.cpp" />
-    <ClCompile Include="Source\GraphSerializer.cpp" />
+    <ClCompile Include="Scene\Source\NodeConnections.cpp" />
+    <ClCompile Include="Scene\Source\NodeData.cpp" />
+    <ClCompile Include="Scene\Source\NodeExecution.cpp" />
+    <ClCompile Include="Scripting\Source Files\Graph.cpp" />
+    <ClCompile Include="Scripting\Source Files\GraphExecutor.cpp" />
+    <ClCompile Include="Scripting\Source Files\GraphLayout.cpp" />
+    <ClCompile Include="Scripting\Source Files\GraphSerializer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Header Files\AudioComponent.h" />
@@ -35,14 +39,19 @@
     <ClInclude Include="Components\Header Files\PhysicsComponent.h" />
     <ClInclude Include="Components\Header Files\RenderComponent.h" />
     <ClInclude Include="Components\Header Files\ScriptComponent.h" />
-    <ClInclude Include="Header\Graph.h" />
-    <ClInclude Include="Header\GraphExecutor.h" />
-    <ClInclude Include="Header\GraphLayout.h" />
-    <ClInclude Include="Header\GraphSerializer.h" />
+    <ClInclude Include="DataTypeUtils.h" />
     <ClInclude Include="Scene\Header\Connection.h" />
     <ClInclude Include="Scene\Header\EventNode.h" />
     <ClInclude Include="Scene\Header\Node.h" />
+    <ClInclude Include="Scene\Header\NodeData.h" />
+    <ClInclude Include="Scene\Header\NodeExecution.h" />
+    <ClInclude Include="Scene\Header\NodeSerialization.h" />
     <ClInclude Include="Scene\Header\VariableNode.h" />
+    <ClInclude Include="Scene\Source\NodeConnections.h" />
+    <ClInclude Include="Scripting\Header Files\Graph.h" />
+    <ClInclude Include="Scripting\Header Files\GraphExecutor.h" />
+    <ClInclude Include="Scripting\Header Files\GraphLayout.h" />
+    <ClInclude Include="Scripting\Header Files\GraphSerializer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

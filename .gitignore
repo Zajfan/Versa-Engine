@@ -399,4 +399,10 @@ FodyWeavers.xsd
 *.sln
 *.txt
 *.vcxproj.filters
+*.vcxproj*.vcxproj
+Core/VersaEngine.Core/VersaEngine.Core.vcxproj
 *.vcxproj
+Core/VersaEngine.Core/VersaEngine.Core.vcxproj
+Core/VersaEngine.Core/VersaEngine.Core.vcxproj.filters
+Editor/VersaEngine.Editor/VersaEngine.Editor.vcxproj.filters
+Versa Engine.sln

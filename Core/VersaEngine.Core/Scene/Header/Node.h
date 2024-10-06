@@ -1,3 +1,5 @@
+// Node.h
+
 #ifndef NODE_H
 #define NODE_H
 
@@ -6,34 +8,12 @@
 #include <map>
 #include <any>
 #include <chrono>
-#include <memory> 
+#include <memory>
 
-#include "Connection.h" 
-#include "NodeComponent.h" 
+#include "Connection.h"
+#include "NodeComponent.h"
 
-// Define an enum for supported data types
-enum class NodeDataType
-{
-    Int,
-    Float,
-    Bool,
-    String,
-    Vector2,
-    Vector3,
-    // ... other types as needed
-};
-
-class Pin
-{
-public:
-    std::string Name;
-    NodeDataType DataType; // Use the NodeDataType enum
-    // ... other pin-related properties (e.g., connection point location)
-    std::any Data; // Add a Data member to store the pin's value
-};
-
-// Forward declaration of the Event class
-class Event;
+// ... (NodeDataType enum, Pin class)
 
 class Node : public ISelectable
 {
@@ -61,16 +41,22 @@ public:
     std::string Icon; // Path or ID for the icon image
     std::string Tooltip;
     bool IsCollapsed = false;
+    float BorderThickness = 2.0f; // Add border thickness property
+    bool ShowLabel = true;  // Add option to show/hide the node's label
 
     // Execution and Logic
     int ExecutionPriority = 0;
     bool IsBreakpoint = false;
     std::string Condition; // String to store a conditional expression
+    enum class ExecutionMode { Default, Conditional, Loop }; // Add execution mode
+    ExecutionMode ExecMode = ExecutionMode::Default;
+    int LoopCount = 1; // Add loop count for loop mode
     // ... (Properties or methods for state management)
 
     // Node Relationships and Connections
     enum class ConnectionType { Data, Event, Control };
     std::vector<ConnectionType> AllowedConnectionTypes;
+    bool AllowMultipleConnections = true; // Add flag for multiple connections to a pin
     // ... (Properties or methods for dynamic ports)
 
     // Data and Metadata
@@ -93,59 +79,29 @@ public:
     // Components (using unique_ptr for ownership)
     std::vector<std::unique_ptr<NodeComponent>> Components;
 
-    // Methods related to connections (moved to NodeConnections.h)
-    void AddConnection(Connection* connection);
-    void RemoveConnection(Connection* connection);
-    std::vector<Node*> GetConnectedNodes() const; // Make this method const
-    bool CanConnectTo(Node* otherNode, Pin* myPin, Pin* otherPin) const;
+    // Methods
+    void AddComponent(std::unique_ptr<NodeComponent> component);
 
     // Interface implementations
     virtual bool IsSelected() const override;
     virtual void Select() override;
     virtual void Deselect() override;
 
-    // Node-specific methods (examples)
-    virtual void Initialize();
-    virtual void Terminate();
-    virtual void HandleEvent(Event event);
-
-    // Methods related to execution and logic (moved to NodeExecution.h)
-    void Execute();
-    bool EvaluateCondition(); // New method to evaluate the condition
+    // Node-specific methods
+    void Initialize();
+    void Terminate();
+    void Update(float deltaTime);
+    void Render(/* ... graphics context */);
+    void HandleEvent(Event event);
 
     // Type-safe data access methods
     template <typename T>
-    T GetData() const
-    {
-        if (Data.type() == typeid(T))
-        {
-            return std::any_cast<T>(Data);
-        }
-        else
-        {
-            // Handle the case where the type does not match 
-            throw std::bad_any_cast();
-        }
-    }
+    T GetData() const;
 
     template <typename T>
-    void SetData(const T& data)
-    {
-        Data = data;
-    }
+    void SetData(const T& data);
 
-    // Method to add components
-    void AddComponent(std::unique_ptr<NodeComponent> component);
-
-    // Templated methods for type-safe data access (New additions)
-    // Methods related to data access (moved to NodeData.h)
-    template <typename T>
-    void SetInputData(const std::string& pinName, const T& value);
-
-    template <typename T>
-    T GetOutputData(const std::string& pinName) const;
-
-    // ... (Serialization and Deserialization)
+    // ... (Serialization and Deserialization - declarations will be in NodeSerialization.h)
 };
 
 #endif // NODE_H
