@@ -29,6 +29,7 @@ public:
     std::string Name;
     NodeDataType DataType; // Use the NodeDataType enum
     // ... other pin-related properties (e.g., connection point location)
+    std::any Data; // Add a Data member to store the pin's value
 };
 
 // Forward declaration of the Event class
@@ -92,10 +93,11 @@ public:
     // Components (using unique_ptr for ownership)
     std::vector<std::unique_ptr<NodeComponent>> Components;
 
-    // Methods
+    // Methods related to connections (moved to NodeConnections.h)
     void AddConnection(Connection* connection);
     void RemoveConnection(Connection* connection);
-    std::vector<Node*> GetConnectedNodes();
+    std::vector<Node*> GetConnectedNodes() const; // Make this method const
+    bool CanConnectTo(Node* otherNode, Pin* myPin, Pin* otherPin) const;
 
     // Interface implementations
     virtual bool IsSelected() const override;
@@ -106,7 +108,10 @@ public:
     virtual void Initialize();
     virtual void Terminate();
     virtual void HandleEvent(Event event);
-    virtual void Execute();
+
+    // Methods related to execution and logic (moved to NodeExecution.h)
+    void Execute();
+    bool EvaluateCondition(); // New method to evaluate the condition
 
     // Type-safe data access methods
     template <typename T>
@@ -129,13 +134,11 @@ public:
         Data = data;
     }
 
-    // Connection validation
-    bool CanConnectTo(Node* otherNode, Pin* myPin, Pin* otherPin) const;
-
     // Method to add components
     void AddComponent(std::unique_ptr<NodeComponent> component);
 
     // Templated methods for type-safe data access (New additions)
+    // Methods related to data access (moved to NodeData.h)
     template <typename T>
     void SetInputData(const std::string& pinName, const T& value);
 
