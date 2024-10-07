@@ -32,21 +32,7 @@ Node::~Node()
 }
 
 // Interface implementations
-bool Node::IsSelected() const
-{
-    // TODO: Implement selection logic
-    return false;
-}
-
-void Node::Select()
-{
-    // TODO: Implement selection logic
-}
-
-void Node::Deselect()
-{
-    // TODO: Implement deselection logic
-}
+// ... (IsSelected, Select, Deselect)
 
 void Node::Update(float deltaTime)
 {
@@ -88,6 +74,13 @@ void Node::HandleEvent(Event event)
 void Node::AddComponent(std::unique_ptr<NodeComponent> component)
 {
     Components.push_back(std::move(component));
+}
+
+void Node::Reset()
+{
+    CurrentState = ExecutionState::NotExecuted;
+    // ... (Reset other state variables as needed)
+    // ... (Potentially reset the state of child nodes or components)
 }
 
 // ... (You'll likely need to implement serialization and deserialization methods here

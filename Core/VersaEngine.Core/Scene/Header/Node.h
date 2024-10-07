@@ -1,5 +1,3 @@
-// Node.h
-
 #ifndef NODE_H
 #define NODE_H
 
@@ -37,26 +35,34 @@ public:
     // Visual Representation and Editor Interaction
     enum class NodeShape { Rectangle, RoundedRectangle, Circle, Custom };
     NodeShape Shape = NodeShape::Rectangle;
-    glm::vec3 Color = glm::vec3(1.0f); // Using vec3 for RGB color
-    std::string Icon; // Path or ID for the icon image
+    glm::vec3 Color = glm::vec3(1.0f);
+    std::string Icon;
     std::string Tooltip;
     bool IsCollapsed = false;
-    float BorderThickness = 2.0f; // Add border thickness property
-    bool ShowLabel = true;  // Add option to show/hide the node's label
+    float BorderThickness = 2.0f;
+    bool ShowLabel = true;
 
     // Execution and Logic
     int ExecutionPriority = 0;
     bool IsBreakpoint = false;
-    std::string Condition; // String to store a conditional expression
-    enum class ExecutionMode { Default, Conditional, Loop }; // Add execution mode
+    std::string Condition;
+    enum class ExecutionMode { Default, Conditional, Loop };
     ExecutionMode ExecMode = ExecutionMode::Default;
-    int LoopCount = 1; // Add loop count for loop mode
-    // ... (Properties or methods for state management)
+    int LoopCount = 1;
+
+    // Error Handling
+    std::string ErrorMessage;
+    bool HasError() const { return !ErrorMessage.empty(); }
+    void ClearError() { ErrorMessage.clear(); }
+
+    // Execution State
+    enum class ExecutionState { NotExecuted, Executing, Executed, Failed };
+    ExecutionState CurrentState = ExecutionState::NotExecuted;
 
     // Node Relationships and Connections
     enum class ConnectionType { Data, Event, Control };
     std::vector<ConnectionType> AllowedConnectionTypes;
-    bool AllowMultipleConnections = true; // Add flag for multiple connections to a pin
+    bool AllowMultipleConnections = true;
     // ... (Properties or methods for dynamic ports)
 
     // Data and Metadata
@@ -76,7 +82,7 @@ public:
     int Id;
     std::string Comment;
 
-    // Components (using unique_ptr for ownership)
+    // Components
     std::vector<std::unique_ptr<NodeComponent>> Components;
 
     // Methods
@@ -93,6 +99,9 @@ public:
     void Update(float deltaTime);
     void Render(/* ... graphics context */);
     void HandleEvent(Event event);
+
+    // Resetting and Breakpoints
+    void Reset();
 
     // Type-safe data access methods
     template <typename T>
